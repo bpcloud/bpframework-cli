@@ -1,0 +1,94 @@
+#!/usr/bin/env node
+
+'use strict';
+
+var webpack = require('webpack');
+var fs = require('fs');
+var path = require('path');
+var ora     = require('ora');
+var febs     = require('febs');
+var os       = require('os');
+const TerserPlugin = require('terser-webpack-plugin');
+
+var spinner = ora('Build... ');
+
+exports.run = function (workdir) {
+  console.log(workdir)
+  
+  function resolveDistPath(...paths) {
+    return path.join(workdir, '_dist', ...paths)
+  }
+
+  function resolveSrcPath(...paths) {
+    return path.join(workdir, ...paths);
+  }
+
+  febs.file.dirAssure(resolveDistPath('config'));
+  febs.file.fileRemove(resolveDistPath('config', 'bootstrap.yml'));
+  febs.file.fileCopy(resolveSrcPath('config', 'bootstrap.yml'), resolveDistPath('config', 'bootstrap.yml'));
+  febs.file.fileRemove(resolveDistPath('package.json'));
+  febs.file.fileCopy(resolveSrcPath('package.json'), resolveDistPath('package.json'));
+
+  var nodeModules = {};
+  fs.readdirSync('node_modules')
+    .filter(function (x) {
+      return ['.bin'].indexOf(x) === -1;
+    })
+    .forEach(function (mod) {
+      nodeModules[mod] = 'commonjs ' + mod;
+    });
+
+  var cfg = {
+    mode: "development",
+    devtool: os.platform().indexOf('win') == 0 ? "source-map" : "source-map",
+    entry: [
+      '@babel/polyfill', resolveSrcPath('main.ts')
+    ],
+    output: {
+      path: resolveDistPath(),
+      filename: 'libs-dev.js'
+    },
+    resolve: {
+      // Add `.ts` and `.tsx` as a resolvable extension.
+      extensions: ['.ts', '.tsx', '.js'],
+      alias: {
+        '@': resolveSrcPath(),
+      }
+    },
+    target: 'node',
+    externals: nodeModules,
+    module: {
+      rules: [
+        {
+          test: /\.ts$/,
+          exclude: /node_modules/,
+          use: 'ts-loader',
+        },
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: 'babel-loader',
+        },
+      ]
+    }
+  }
+
+  spinner.start();
+  let compiler = webpack(cfg);
+
+  compiler.run(function (err, stats) {
+    console.log(stats.toString({
+      colors: true
+    }));
+    spinner.stop();
+
+    febs.file.fileRemove(resolveDistPath('app.dev.js'));
+    febs.file.fileCopy(path.join(__dirname, 'app.dev.js'), resolveDistPath('app.dev.js'));
+    febs.file.fileRemove(resolveDistPath('app-cron.dev.js'));
+    febs.file.fileCopy(path.join(__dirname, 'app-cron.dev.js'), resolveDistPath('app-cron.dev.js'));
+    febs.file.dirRemoveRecursive(resolveDistPath('locales'));
+    if (febs.file.dirIsExist(resolveSrcPath('locales'))) {
+      febs.file.dirCopy(resolveSrcPath('locales'), resolveDistPath('locales'));
+    }
+  });
+}

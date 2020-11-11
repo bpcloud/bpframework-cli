@@ -1,0 +1,44 @@
+'use strict';
+
+/**
+* Copyright (c) 2020 Copyright bp All Rights Reserved.
+* Author: brian.li
+* Date: 2020-11-10 18:55
+* Desc: 
+*/
+
+var fs = require('fs');
+var febs = require('febs');
+var chalk = require('chalk');
+var path = require('path');
+
+exports.generator = function (workDir, projectName) {
+  console.log(chalk.green('Begin generator koa project'));
+  
+  let files = febs.file.dirExplorerFilesRecursive(path.join(__dirname, 'koa'));
+  console.log(files);
+
+  febs.file.dirAssure(path.join(workDir, projectName));
+
+  let destDir = path.join(workDir, projectName);
+  let srcDir = path.join(__dirname, 'koa');
+
+  for (const i in files) {
+    let file = files[i];
+    if (path.basename(file) == '.DS_Store') {
+      continue;
+    }
+    
+    let data = fs.readFileSync(path.join(srcDir, file), { encoding: 'utf8' });
+    data = data.toString();
+
+    // replace.
+    data = febs.string.replace(data, '${projectName}', projectName);
+
+    file = path.join(destDir, file.substr(0, file.length - 2));
+    febs.file.dirAssure(path.dirname(file));
+    fs.writeFileSync(file, data, {encoding:'utf8', flag:'w+'});
+  } // for.
+
+  console.log(chalk.green('Finish generator koa project, see ')+chalk.bgMagenta('\'readme.md\''));
+}

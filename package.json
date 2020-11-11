@@ -1,0 +1,79 @@
+{
+  "description": "cli of bpframework",
+  "dependencies": {
+    "@babel/cli": "^7.6.4",
+    "@babel/core": "^7.6.4",
+    "@babel/plugin-transform-runtime": "^7.8.3",
+    "@babel/polyfill": "^7.6.0",
+    "@babel/preset-env": "^7.6.3",
+    "@types/keymirror": "^0.1.1",
+    "babel-loader": "^8.0.6",
+    "colors": "^1.1.2",
+    "core-js": "^3.6.5",
+    "chalk": "^4.1.0",
+    "febs": "^1.0.11",
+    "ora": "^1.4.0",
+    "readline-sync": "^1.4.10",
+    "term-list": "^0.2.1",
+    "terser-webpack-plugin": "^2.2.1",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.5",
+    "webpack": "^4.41.2"
+  },
+  "devDependencies": {
+  },
+  "directories": {},
+  "engines": {
+    "node": ">=10"
+  },
+  "homepage": "https://github.com/brainpoint/bpframework-cli#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/brainpoint/bpframework-cli.git"
+  },
+  "keywords": [
+    "java",
+    "spring",
+    "springboot",
+    "annotation",
+    "validation",
+    "controller",
+    "service",
+    "feign",
+    "feignClient",
+    "PathVariable",
+    "RequestBody",
+    "RequestMapping",
+    "postmapping",
+    "getmapping",
+    "RequestParam",
+    "restcontroller",
+    "request",
+    "service",
+    "autowired"
+  ],
+  "files": [
+    "_scripts",
+    "bin",
+    "dist",
+    "src",
+    "templates",
+    "postinstall.js"
+  ],
+  "bin": {
+    "bpframework": "./bin/index.js"
+  },
+  "license": "MIT",
+  "main": "./bin/index.js",
+  "maintainers": [
+    {
+      "name": "brainpoint",
+      "email": "bpoint.lee@gmail.com"
+    }
+  ],
+  "scripts": {
+    "postinstall": "node ./postinstall"
+  },
+  "name": "bpframework-cli",
+  "version": "0.0.4"
+}
