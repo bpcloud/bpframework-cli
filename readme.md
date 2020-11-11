@@ -13,3 +13,5 @@ to initial a project
 ```bash
 bpframework init
 ```
+
+more information [bpframework](https://www.npmjs.com/package/bpframework)

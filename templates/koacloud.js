@@ -40,5 +40,6 @@ exports.generator = function (workDir, projectName) {
     fs.writeFileSync(file, data, {encoding:'utf8', flag:'w+'});
   } // for.
 
+  console.log('Success generator project in: ' + chalk.green(path.join(workDir, projectName)));
   console.log(chalk.green('Finish generator koa project, see ')+chalk.bgMagenta('\'readme.md\''));
 }

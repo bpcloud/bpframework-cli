@@ -1,7 +1,7 @@
 {
   "description": "${projectName}",
   "dependencies": {
-    "bpframework": "0.0.9",
+    "bpframework": "0.0.10",
     "febs": "^1.0.11",
     "i18n": "^0.8.3",
     "koa": "^2.2.0",
@@ -14,7 +14,7 @@
     "@types/i18n": "^0.8.5",
     "@types/koa": "^2.0.40",
     "@types/koa-bodyparser": "^3.0.26",
-    "bpframework-cli": "0.0.4",
+    "bpframework-cli": "0.0.5",
     "ts-loader": "^6.2.1",
     "typescript": "^3.7.5"
   },
