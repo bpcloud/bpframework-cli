@@ -5,4 +5,5 @@
 */
 
 import './contextRefreshedEventListener';
+import './instanceRegisteredEventListener';
 import './refreshRemoteEventListener';

@@ -56,7 +56,6 @@
     "_scripts",
     "bin",
     "dist",
-    "src",
     "templates",
     "postinstall.js"
   ],
@@ -75,5 +74,5 @@
     "postinstall": "node ./postinstall"
   },
   "name": "bpframework-cli",
-  "version": "0.0.5"
+  "version": "0.0.6"
 }

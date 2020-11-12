@@ -1,7 +1,7 @@
 {
   "description": "${projectName}",
   "dependencies": {
-    "bpframework": "0.0.10",
+    "bpframework": "0.0.14",
     "febs": "^1.0.11",
     "i18n": "^0.8.3",
     "koa": "^2.2.0",
