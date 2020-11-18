@@ -1,7 +1,7 @@
 {
   "description": "${projectName}",
   "dependencies": {
-    "bpframework": "0.0.14",
+    "bpframework": "0.0.15",
     "febs": "^1.0.11",
     "i18n": "^0.8.3",
     "koa": "^2.2.0",
@@ -11,15 +11,15 @@
     "url": "^0.11.0"
   },
   "devDependencies": {
+    "@bpframework/build-cli": "0.0.3",
     "@types/i18n": "^0.8.5",
     "@types/koa": "^2.0.40",
     "@types/koa-bodyparser": "^3.0.26",
-    "bpframework-cli": "0.0.5",
     "ts-loader": "^6.2.1",
     "typescript": "^3.7.5"
   },
   "engines": {
-    "node": ">=7"
+    "node": ">=10"
   },
   "repository": {},
   "directories": {},
@@ -28,8 +28,9 @@
   "main": "app.js",
   "name": "app",
   "scripts": {
-    "build": "bpframework build",
-    "build:prd": "bpframework build:prd"
+    "dev": "bpframework-build build && node ./_dist/app.dev.js",
+    "build": "bpframework-build build",
+    "build:prd": "bpframework-build build:prd"
   },
   "version": "1.0.0"
 }

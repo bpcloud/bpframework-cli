@@ -5,13 +5,9 @@
 var List = require('term-list');
 var path = require('path');
 var init = require('./init');
-var build = require('./build');
-var buildPrd = require('./buildPrd');
 
 var commands = {
   'init': [init, 'Initial project'],
-  'build': [build, 'Build project for development.'],
-  'build:prd': [buildPrd, 'Build project for production.'],
 }
 
 /**

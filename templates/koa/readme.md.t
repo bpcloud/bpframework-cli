@@ -12,6 +12,7 @@ Press F5 in vscode.
 Build
 
 ```bash
+npm run dev         # run application.
 npm run build       # for development envs.
 npm run build:prd   # for production envs.
 ```

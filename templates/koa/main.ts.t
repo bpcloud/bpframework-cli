@@ -1,6 +1,6 @@
 'use strict';
 
-import { Application, LogLevel } from 'bpframework';
+import { BpApplication, Application, LogLevel } from 'bpframework';
 import './config/configure';
 import './events';
 import './controllers';
@@ -10,6 +10,7 @@ import './crons';
 import * as koajs from './utils/koajs';
 import {logger} from './utils/logger';
 
+@BpApplication()
 class App {
   /**
   * @desc main entry.
@@ -23,4 +24,3 @@ class App {
     });
   }
 }
-new App().main();
