@@ -2,31 +2,65 @@
 
 'use strict';
 
+var febs = require('febs');
 var List = require('term-list');
 var path = require('path');
 var init = require('./init');
+var pack = require('../package.json');
+var utils = require('./utils');
+var chalk = require('chalk');
 
 var commands = {
   'init': [init, 'Initial project'],
+}
+
+function checkoutVersion(cbFinish) {
+  febs.utils.execCommand('npm', ['view', 'bpframework-cli', 'version', '--json'], (err, stdout, stderr) => {
+    if (err) {
+      console.error(err);
+
+      if ('n' == utils.question(chalk.red('[Error] checkout latest version! continue? (Y/n)'), (answer) => {
+        return answer == 'Y' || answer == 'n';
+      })) {
+        process.exit(0);
+      } else {
+        stdout = '"' + febs.string.trim(pack.version) + '"';
+      }
+    }
+
+    if (febs.string.trim(stdout) != '"' + febs.string.trim(pack.version) + '"') {
+      console.log('[New version available] run: ' + chalk.green('npm i bpframework-cli@latest -g'));
+
+      if ('Y' == utils.question('[Warn] upgrade now? (Y/n)', (answer) => {
+        return answer == 'Y' || answer == 'n';
+      })) {
+        process.exit(0);
+      }
+    }
+
+    cbFinish();
+  });
 }
 
 /**
  * Parses the command line and runs a command of the CLI.
  */
 function run() {
-  var args = process.argv.slice(2);
-  if (args.length === 0) {
-    printUsage();
-  }
+  checkoutVersion(() => {
+    var args = process.argv.slice(2);
+    if (args.length === 0) {
+      printUsage();
+    }
 
-  var command = commands[args[0]];
-  if (!command) {
-    console.error('Command `%s` unrecognized', args[0]);
-    printUsage();
-    return;
-  }
+    var command = commands[args[0]];
+    if (!command) {
+      console.error('Command `%s` unrecognized', args[0]);
+      printUsage();
+      return;
+    }
 
-  command[0].done(args);
+    command[0].done(args);
+  });
 }
 
 function printUsage() {

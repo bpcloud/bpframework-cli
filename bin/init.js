@@ -3,21 +3,8 @@
 var path = require('path');
 var febs = require('febs');
 var chalk = require('chalk');
-var readline = require('readline-sync');
 var List = require('term-list');
-
-function question(qus, conditionCB) {
-  let answer = readline.question(qus);
-  if (!answer || answer.length == 0) {
-    return question(qus, conditionCB);
-  }
-  else if (conditionCB && !conditionCB(answer)) {
-    return question(qus, conditionCB);
-  }
-  else {
-    return answer;
-  }
-}
+var utils = require('./utils');
 
 function printSuccess() {
   console.log('**************************************************************');
@@ -34,13 +21,13 @@ function done(args, workDir) {
   console.log('**************************************************************');
   console.log('');
 
-  let projectName = question('> Enter the name of project: ');
+  let projectName = utils.question('> Enter the name of project: ');
   if (!/^[a-zA-Z\$_][a-zA-Z\d_]*$/.test(projectName.toString())) {
     console.log(chalk.red('name is invalid!'));
     process.exit(0);
   }
   if (febs.file.dirIsExist(path.join(workDir, projectName))) {
-    if ('n' == question(chalk.red('directory is already existed! continue? (Y/n)'), (answer) => {
+    if ('n' == utils.question(chalk.red('directory is already existed! continue? (Y/n)'), (answer) => {
       return answer == 'Y' || answer == 'n';
     })) {
       process.exit(0);
