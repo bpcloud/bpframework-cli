@@ -15,8 +15,9 @@ var commands = {
 }
 
 function checkoutVersion(cbFinish) {
-  febs.utils.execCommand('npm', ['view', 'bpframework-cli', 'version', '--json'], (err, stdout, stderr) => {
+  febs.utils.execCommand((process.platform === 'win32'? 'npm.cmd': 'npm'), ['view', 'bpframework-cli', 'version', '--json'], (err, stdout, stderr) => {
     if (err) {
+    
       console.error(err);
 
       if ('n' == utils.question(chalk.red('[Error] checkout latest version! continue? (Y/n)'), (answer) => {
@@ -27,9 +28,9 @@ function checkoutVersion(cbFinish) {
         stdout = '"' + febs.string.trim(pack.version) + '"';
       }
     }
-
+    
     if (febs.string.trim(stdout) != '"' + febs.string.trim(pack.version) + '"') {
-      console.log('[New version available] run: ' + chalk.green('npm i bpframework-cli@latest -g'));
+      console.log('[New version available] To run: ' + chalk.green('npm i bpframework-cli@latest -g') + ' in terminal');
 
       if ('Y' == utils.question('[Warn] upgrade now? (Y/n)', (answer) => {
         return answer == 'Y' || answer == 'n';

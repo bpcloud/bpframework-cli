@@ -3,7 +3,7 @@
   "dependencies": {
     "chalk": "^4.1.0",
     "colors": "^1.1.2",
-    "febs": "^1.0.11",
+    "febs": "^1.0.12",
     "readline-sync": "^1.4.10",
     "term-list": "^0.2.1"
   },
@@ -60,5 +60,5 @@
     "postinstall": "node ./postinstall"
   },
   "name": "bpframework-cli",
-  "version": "0.0.10"
+  "version": "0.0.11"
 }
