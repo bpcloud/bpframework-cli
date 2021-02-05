@@ -35,11 +35,24 @@ function checkoutVersion(cbFinish) {
       if ('Y' == utils.question('[Warn] upgrade now? (Y/n)', (answer) => {
         return answer == 'Y' || answer == 'n';
       })) {
-        process.exit(0);
+        console.log("upgrading...")
+        febs.utils.execCommand("npm", ["i", "bpframework-cli@latest", "-g"], (err, stdout, stderr) => {
+          if (err) {
+            console.error(stderr);
+          }
+          else {
+            console.log(stdout);
+          }
+          process.exit(0);
+        });
+      }
+      else {
+        cbFinish();
       }
     }
-
-    cbFinish();
+    else {
+      cbFinish();
+    }
   });
 }
 
