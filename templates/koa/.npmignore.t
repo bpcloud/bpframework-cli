@@ -5,6 +5,10 @@
 ~$*.ppt
 ~$*.pptx
 
+# dist
+#
+/_dist
+
 # IDE
 #
 .idea
