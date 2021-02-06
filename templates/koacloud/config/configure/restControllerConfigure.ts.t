@@ -31,6 +31,7 @@ class Configure {
       /** 404. */
       notFoundCallback: (request: RestRequest, response: RestResponse): void => {
         console.log('404');
+        response.body = "404";
       }
     } // 
   }

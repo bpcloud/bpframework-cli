@@ -1,8 +1,8 @@
 {
   "description": "${projectName}",
   "dependencies": {
-    "bpframework": "0.0.18",
-    "febs": "^1.0.11",
+    "bpframework": "0.0.20",
+    "febs": "^1.2.1",
     "i18n": "^0.8.3",
     "koa": "^2.2.0",
     "koa-bodyparser": "^4.2.0",
