@@ -10,9 +10,11 @@ import * as febs from 'febs'
 
 declare global {
   /**
-  * @desc: i18n本地化. 返回值赋值给 err_msg 时, 会自动在response前使用对应的本地化语言.
-  * e.g. __i18n('hello {{name}}', {name:'world'})
+  * @desc: (使用默认语言) i18n本地化. 返回本地化字符串.
+  * @example
+  *   __i18n('hello {name}', {name:'world'})
+  *   __i18n('hello %s %s', 'name', 'world')
   */
-  function __i18n(phrase:string, params?:object):any;
+  function __i18n(phrase: string, ...params: any[]): string;
 }
 

@@ -14,11 +14,11 @@ class DemoController {
   /**
    * 对/api的请求.
    */
-  @RequestMapping({ path: '/api/{a}/{b}', method: RequestMethod.POST, dataType:String })
+  @RequestMapping({ path: '/api/{a}/{b}', method: RequestMethod.POST })
   async request(
     @PathVariable({ name: "a", required: true }) a: string,
     @PathVariable({ name: "b", required: false }) b: string,
-    @RequestParam({ name: "b", required: false, }) c: string,
+    @RequestParam({ name: "b", required: false, castType: Number }) c: number,
     @RequestBody body:string,
     @RestObject obj:RestObjectTypeRest<koa.Context>,  // or RestObjectType
   ): Promise<BeanDemo> {

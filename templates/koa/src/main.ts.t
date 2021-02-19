@@ -1,7 +1,7 @@
 'use strict';
 
 import { BpApplication, Application, LogLevel } from 'bpframework';
-import './config/configure';
+import './configure';
 import './events';
 import './controllers';
 import './crons';

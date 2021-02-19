@@ -1,18 +1,16 @@
 {
   "description": "${projectName}",
   "dependencies": {
-    "bpframework": "0.0.20",
+    "bpframework": "^0.1.6",
     "febs": "^1.2.1",
-    "i18n": "^0.8.3",
     "koa": "^2.2.0",
     "koa-bodyparser": "^4.2.0",
-    "koa-i18n": "^2.1.0",
-    "koa-locale": "^1.3.0",
+    "koa-locales": "^1.12.0",
+    "log4js": "^6.3.0",
     "url": "^0.11.0"
   },
   "devDependencies": {
-    "@bpframework/build-cli": "0.0.3",
-    "@types/i18n": "^0.8.5",
+    "@bpframework/build-cli": "^0.1.2",
     "@types/koa": "^2.0.40",
     "@types/koa-bodyparser": "^3.0.26",
     "ts-loader": "^6.2.1",
@@ -25,10 +23,10 @@
   "directories": {},
   "license": "UNLICENSED",
   "keywords": [],
-  "main": "app.js",
+  "main": "libs/app-cron.js",
   "name": "app",
   "scripts": {
-    "dev": "bpframework-build build && node ./_dist/app.dev.js",
+    "dev": "bpframework-build build && node ./_dist/libs/app.dev.js",
     "build": "bpframework-build build",
     "build:prd": "bpframework-build build:prd"
   },

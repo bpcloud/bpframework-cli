@@ -14,7 +14,7 @@ export class DemoFeignClient {
   /**
    * 对/api的请求.
    */
-  @RequestMapping({ path: '/api/{a}/{b}', method: RequestMethod.POST, dataType:DemoFeignClientBean })
+  @RequestMapping({ path: '/api/{a}/{b}', method: RequestMethod.POST, feignCastType:DemoFeignClientBean })
   async request(
     @RequestBody body:string,
     @RestObject obj?: RestObjectTypeFeign,  // or RestObjectType

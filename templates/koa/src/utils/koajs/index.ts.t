@@ -5,8 +5,6 @@
 */
 
 import * as koa from 'koa';
-import { ServerResponse } from 'http';
-import * as path from 'path';
 import * as locale from './middleware/locale';
 
 
@@ -18,8 +16,7 @@ export function createApp(): koa {
   var app = new koa();
 
   // locale.
-  require('koa-locale')(app)
-  locale.install();
+  locale.install(app);
   
   // body解析.
   app.use(require('koa-bodyparser')({

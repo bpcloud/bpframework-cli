@@ -9,9 +9,18 @@ var init = require('./init');
 var pack = require('../package.json');
 var utils = require('./utils');
 var chalk = require('chalk');
+var fs = require('fs');
 
 var commands = {
   'init': [init, 'Initial project'],
+}
+
+var LASTUPDATE_STEP = 1000 * 60 * 60 * 10;
+var LASTUPDATE_FILE = path.join(__dirname, 'lastupdate');
+var lastupdate = new Date().getTime().toString();
+
+if (febs.file.fileIsExist(LASTUPDATE_FILE)) {
+  lastupdate = fs.readFileSync(LASTUPDATE_FILE, 'utf8');
 }
 
 function checkoutVersion(cbFinish) {
@@ -56,25 +65,35 @@ function checkoutVersion(cbFinish) {
   });
 }
 
+function runDo() {
+  var args = process.argv.slice(2);
+  if (args.length === 0) {
+    printUsage();
+  }
+
+  var command = commands[args[0]];
+  if (!command) {
+    console.error('Command `%s` unrecognized', args[0]);
+    printUsage();
+    return;
+  }
+
+  command[0].done(args);
+}
+
 /**
  * Parses the command line and runs a command of the CLI.
  */
 function run() {
-  checkoutVersion(() => {
-    var args = process.argv.slice(2);
-    if (args.length === 0) {
-      printUsage();
-    }
 
-    var command = commands[args[0]];
-    if (!command) {
-      console.error('Command `%s` unrecognized', args[0]);
-      printUsage();
-      return;
-    }
-
-    command[0].done(args);
-  });
+  let step = new Date().getTime() - Number(lastupdate);
+  if (Number.isInteger(step) && step < LASTUPDATE_STEP) {
+    runDo();
+  }
+  else {
+    fs.writeFileSync(LASTUPDATE_FILE, new Date().getTime().toString());
+    checkoutVersion(runDo);
+  }
 }
 
 function printUsage() {

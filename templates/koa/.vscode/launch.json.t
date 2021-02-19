@@ -8,7 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "Debug application",
-      "program": "${workspaceFolder}/main.ts",
+      "program": "${workspaceFolder}/src/main.ts",
       "osx": {
         "preLaunchTask": "build dev",
       },
