@@ -7,8 +7,10 @@ import './controllers';
 import './crons';
 
 // use koa.
-import * as koajs from './utils/koajs';
-import {logger} from './utils/logger';
+import * as koa from 'koa';
+import {bplogger} from './libs/bp-logger';
+
+import * as middleware_i18n from '@bpframework/middleware-koa-i18n';
 
 @BpApplication()
 class App {
@@ -16,11 +18,16 @@ class App {
   * @desc main entry.
   */
   main() {
+
+    // middlewares.
+    Application.use(middleware_i18n.middleware())
+
+    // run.
     Application.runKoa({
-      logger,
+      logger: bplogger,
       logLevel: LogLevel.DEBUG,
       enableScheduled: !!(global as any).enableScheduled,
-      app: koajs.createApp(),
+      app: new koa(),
     });
   }
 }

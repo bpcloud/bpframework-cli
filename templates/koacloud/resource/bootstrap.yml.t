@@ -41,7 +41,9 @@ ribbon:
   MaxAutoRetries: 1
 
 bp:
-  # feign client log.
-  feignLoggingLevel: full
-  # restController log.
-  restControllerLoggingLevel: full
+  # feign client log (none, basic, headers, full).
+  feignLoggingLevel: full # full
+  # restController log (none, basic, headers, full).
+  restControllerLoggingLevel: full # full
+  # logger dir
+  loggerDir: 

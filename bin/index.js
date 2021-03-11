@@ -6,18 +6,20 @@ var febs = require('febs');
 var List = require('term-list');
 var path = require('path');
 var init = require('./init');
+var version = require('./version');
 var pack = require('../package.json');
 var utils = require('./utils');
 var chalk = require('chalk');
 var fs = require('fs');
 
 var commands = {
+  'version': [version, 'Version'],
   'init': [init, 'Initial project'],
 }
 
 var LASTUPDATE_STEP = 1000 * 60 * 60 * 10;
 var LASTUPDATE_FILE = path.join(__dirname, 'lastupdate');
-var lastupdate = new Date().getTime().toString();
+var lastupdate = (new Date().getTime() - LASTUPDATE_STEP).toString();
 
 if (febs.file.fileIsExist(LASTUPDATE_FILE)) {
   lastupdate = fs.readFileSync(LASTUPDATE_FILE, 'utf8');

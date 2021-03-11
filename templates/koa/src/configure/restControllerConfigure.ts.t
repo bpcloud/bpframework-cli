@@ -5,9 +5,12 @@
 * Copyright (c) 2020 Copyright bp All Rights Reserved.
 */
 
+
+import * as febs from 'febs';
 import { RestControllerConfigure } from "bpframework";
 import { RestRequest, RestResponse, Service } from "bpframework";
 import { RestControllerConfigureInfo, RestControllerResponseData } from "bpframework";
+import { logger } from "@/libs/logger";
 
 @Service()
 class Configure {
@@ -22,15 +25,31 @@ class Configure {
       },
       /** 接收消息时发生数据类型等错误. */
       errorRequestCallback: (error: Error, request: RestRequest, response: RestResponse): void => {
-        console.log(error);
+        logger.error(logger.getErrorMessage(error));
       },
       /** 响应消息时发生错误. */
       errorResponseCallback: (error: Error, request: RestRequest, response: RestResponse): void => {
-        console.log(error);
+        logger.error(logger.getErrorMessage(error));
+
+        //
+        // febs.exception.
+        if (error instanceof febs.exception) {
+          // network error.
+          if (error.code === 'NetworkFailed') {
+            
+          }
+          // network timeout
+          else if (error.code === 'NetworkTimeout') {
+            
+          }
+          else {
+            
+          }
+        }
       },
       /** 404. */
       notFoundCallback: (request: RestRequest, response: RestResponse): void => {
-        console.log('404');
+        logger.error('404');
         response.body = "404";
       }
     } // 

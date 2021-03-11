@@ -6,8 +6,9 @@
 
 import * as koa from 'koa';
 import { Autowired, PathVariable, RequestBody, RequestMapping, RequestMethod, RequestParam, RestController, RestObject, RestObjectTypeRest } from "bpframework";
-import { BeanDemo } from "./DemoBean";
+import { DemoBean, DemoBodyBean } from "./DemoBean";
 import { DemoFeignClient } from '@/feignclients/DemoFeignClient';
+import { logger } from "@/libs/logger";
 
 @RestController()
 class DemoController {
@@ -26,14 +27,32 @@ class DemoController {
     @RequestParam({ name: "b", required: false, castType: Number }) c: number,
     @RequestBody body:string,
     @RestObject obj:RestObjectTypeRest<koa.Context>,  // or RestObjectType
-  ): Promise<BeanDemo> {
+  ): Promise<DemoBean> {
 
     await this.demoFeignClient.request('xx');
 
     console.log(a, b, c, body, obj);
-    let ret = new BeanDemo();
+    let ret = new DemoBean();
     ret.a = Number(a);
     ret.b = b;
     return ret;
+  }
+
+  /**
+   * post请求.
+   */
+  @RequestMapping({
+    path: '/api/test',
+    method: RequestMethod.POST,
+  })
+  async testPost(
+    @RequestBody({ required: true, castType: DemoBodyBean }) data: DemoBodyBean
+  ): Promise<any> {
+
+    // data.pt.a
+
+    return {
+      ok: true,
+    };
   }
 }

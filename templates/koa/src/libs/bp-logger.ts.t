@@ -3,9 +3,9 @@
 import { getErrorMessage } from 'bpframework';
 
 /**
-* @desc 日志对象.
+* @desc bpframework 中使用的日志对象.
 */
-export const logger = {
+export const bplogger = {
   error(...msg: any[]): any {
     let m = '';
     for (let i = 0; i < msg.length; i++) { m += getErrorMessage(msg[i]) + ' '; }

@@ -10,3 +10,11 @@ spring:
 ---
 spring:
   profiles: dev
+
+bp:
+  # feign client log (none, basic, headers, full).
+  feignLoggingLevel: full # full
+  # restController log (none, basic, headers, full).
+  restControllerLoggingLevel: full # full
+  # logger dir
+  loggerDir: 

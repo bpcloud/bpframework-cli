@@ -41,7 +41,7 @@ Project directory structure:
     └─ controllers/    # RestControllers
     └─ crons/          # Scheduling tasks
     └─ events/         # Events
-    └─ utils/          # Common utilities
+    └─ libs/           # Common utilities
     └─ main.ts         # Main entry
 ```
 
@@ -51,9 +51,23 @@ See:
 
 - framework
 
+```
+> npm i bpframework-cli -g
+> bpframework init
+```
+
+[middleware](https://github.com/bpcloud/middleware.git)
+
+- i18n
+- session
+- logger
+- ...
+
 [febs-decorator](https://www.npmjs.com/package/febs-decorator)
+
+Some decorators.
 
 - service, autowired
 - controller
 - feignClient
-- type validation
+- type validation and so on.
