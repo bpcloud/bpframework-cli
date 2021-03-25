@@ -2,7 +2,7 @@
   "description": "${projectName}",
   "dependencies": {
     "@bpframework/middleware-koa-i18n": "0.0.9",
-    "bpframework": "^0.1.12",
+    "bpframework": "^0.1.13",
     "febs": "^1.2.1",
     "koa": "^2.2.0",
     "log4js": "^6.3.0",
