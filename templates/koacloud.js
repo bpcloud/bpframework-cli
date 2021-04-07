@@ -12,7 +12,7 @@ var febs = require('febs');
 var chalk = require('chalk');
 var path = require('path');
 
-exports.generator = function (workDir, projectName) {
+exports.generator = function (workDir, projectName, regName) {
   console.log(chalk.green('Begin generator koa project'));
   
   let files = febs.file.dirExplorerFilesRecursive(path.join(__dirname, 'koacloud'));
@@ -33,7 +33,7 @@ exports.generator = function (workDir, projectName) {
     data = data.toString();
 
     // replace.
-    data = febs.string.replace(data, '${projectName}', projectName);
+    data = febs.string.replace(data, '${projectName}', regName);
 
     file = path.join(destDir, file.substr(0, file.length - 2));
     febs.file.dirAssure(path.dirname(file));

@@ -12,6 +12,26 @@ function printSuccess() {
   console.log('**************************************************************');
 }
 
+function regName(name) {
+  let pName = '';
+  for (let i = 0; i < name.length; ) {
+    let j = name.indexOf('-', i);
+    if (j >= 0) {
+      pName += name.substring(i, j);
+      if (name.length > j+1) {
+        pName += name[j + 1].toUpperCase();
+        j += 1;
+      }
+      i = j + 1;
+    }
+    else {
+      pName += name.substring(i);
+      break;
+    }
+  }
+  return pName;
+}
+
 function done(args, workDir) {
   workDir = workDir || process.cwd();
 
@@ -22,7 +42,7 @@ function done(args, workDir) {
   console.log('');
 
   let projectName = utils.question('> Enter the name of project: ');
-  if (!/^[a-zA-Z\$_][a-zA-Z\d_]*$/.test(projectName.toString())) {
+  if (!/^[a-zA-Z\$_][a-zA-Z\d_\-]*$/.test(projectName.toString())) {
     console.log(chalk.red('name is invalid!'));
     process.exit(0);
   }
@@ -49,12 +69,12 @@ function done(args, workDir) {
       if (item == 'exit') {
       }
       else if (item == 'koa') {
-        if (require('../templates/koa.js').generator(workDir, projectName)) {
+        if (require('../templates/koa.js').generator(workDir, projectName, regName(projectName))) {
           printSuccess();
         }
       }
       else if (item == 'koacloud') {
-        if (require('../templates/koacloud.js').generator(workDir, projectName)) {
+        if (require('../templates/koacloud.js').generator(workDir, projectName, regName(projectName))) {
           printSuccess();
         }
       }
