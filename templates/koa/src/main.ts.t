@@ -8,7 +8,6 @@ import './crons';
 
 // use koa.
 import * as koa from 'koa';
-import {bplogger} from './libs/bp-logger';
 
 import * as middleware_i18n from '@bpframework/middleware-koa-i18n';
 
@@ -24,7 +23,6 @@ class App {
 
     // run.
     Application.runKoa({
-      logger: bplogger,
       logLevel: LogLevel.DEBUG,
       enableScheduled: !!(global as any).enableScheduled,
       app: new koa(),
