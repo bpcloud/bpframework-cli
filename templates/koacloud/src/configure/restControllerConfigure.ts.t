@@ -22,15 +22,31 @@ class Configure {
       },
       /** 接收消息时发生数据类型等错误. */
       errorRequestCallback: (error: Error, request: RestRequest, response: RestResponse): void => {
-        console.log(error);
+        logger.error(logger.getErrorMessage(error));
       },
       /** 响应消息时发生错误. */
       errorResponseCallback: (error: Error, request: RestRequest, response: RestResponse): void => {
-        console.log(error);
+        logger.error(logger.getErrorMessage(error));
+
+        //
+        // febs.exception.
+        if (febs.exception.isInstance(error)) {
+          // network error.
+          if (error.code === 'NetworkFailed') {
+            
+          }
+          // network timeout
+          else if (error.code === 'NetworkTimeout') {
+            
+          }
+          else {
+            
+          }
+        }
       },
       /** 404. */
       notFoundCallback: (request: RestRequest, response: RestResponse): void => {
-        console.log('404');
+        logger.error('404');
         response.body = "404";
       }
     } // 

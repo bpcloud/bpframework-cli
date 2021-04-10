@@ -33,7 +33,7 @@ class Configure {
 
         //
         // febs.exception.
-        if (error instanceof febs.exception) {
+        if (febs.exception.isInstance(error)) {
           // network error.
           if (error.code === 'NetworkFailed') {
             
