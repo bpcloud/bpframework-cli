@@ -9,9 +9,14 @@ import { Autowired, PathVariable, RequestBody, RequestMapping, RequestMethod, Re
 import { DemoBean, DemoBodyBean } from "./DemoBean";
 import { DemoFeignClient } from '@/feignclients/DemoFeignClient';
 import { logger } from "@/libs/logger";
+import { IDemoService } from "@/services/IDemoService";
 
 @RestController()
 class DemoController {
+
+  // Autowired.
+  @Autowired('DemoService')
+  private demoService: IDemoService;
 
   // Autowired.
   @Autowired(DemoFeignClient)

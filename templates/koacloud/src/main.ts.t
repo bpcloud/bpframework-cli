@@ -26,6 +26,7 @@ class App {
       logLevel: LogLevel.DEBUG,
       enableScheduled: !!(global as any).enableScheduled,
       app: new koa(),
+      springCloudBusConfigurePrefix: 'spring.rabbitmq'
     });
   }
 }

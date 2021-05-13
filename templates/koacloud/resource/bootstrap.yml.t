@@ -32,6 +32,7 @@ spring:
     port: port
     virtual-host: /
 
+# loadbalance microservice discovery
 ribbon:
   ReadTimeout: 20000
   MaxAutoRetriesNextServer: 2

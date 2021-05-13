@@ -8,9 +8,14 @@ import * as koa from 'koa';
 import { PathVariable, RequestBody, RequestMapping, RequestMethod, RequestParam, RestController, RestObject, RestObjectTypeRest } from "bpframework";
 import { DemoBean, DemoBodyBean } from "./DemoBean";
 import { logger } from "@/libs/logger";
+import { IDemoService } from "@/services/IDemoService";
 
 @RestController()
 class DemoController {
+
+  // Autowired.
+  @Autowired('DemoService')
+  private demoService: IDemoService;
 
   /**
    * 对/api的请求.

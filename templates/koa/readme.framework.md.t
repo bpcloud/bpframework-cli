@@ -76,7 +76,7 @@ node ./libs/app-cron.dev.js   # run development app with crontask.
 - logger
 - ...
 
-[febs-decorator](https://www.npmjs.com/package/febs-decorator)
+[examples](https://github.com/bpcloud/bpframework/tree/dev/examples)
 
 Some decorators.
 
