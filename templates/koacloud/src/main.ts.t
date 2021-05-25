@@ -6,6 +6,9 @@ import './events';
 import './controllers';
 import './crons';
 
+// must import before Autowired service.
+import './services/impl/demoService';
+
 // use koa.
 import * as koa from 'koa';
 

@@ -8,6 +8,8 @@
 import { RestControllerConfigure } from "bpframework";
 import { RestRequest, RestResponse, Service } from "bpframework";
 import { RestControllerConfigureInfo, RestControllerResponseData } from "bpframework";
+import { logger } from "@/libs/logger";
+import * as febs from 'febs';
 
 @Service()
 class Configure {

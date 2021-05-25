@@ -8,7 +8,6 @@ import * as koa from 'koa';
 import { Autowired, PathVariable, RequestBody, RequestMapping, RequestMethod, RequestParam, RestController, RestObject, RestObjectTypeRest } from "bpframework";
 import { DemoBean, DemoBodyBean } from "./DemoBean";
 import { DemoFeignClient } from '@/feignclients/DemoFeignClient';
-import { logger } from "@/libs/logger";
 import { IDemoService } from "@/services/IDemoService";
 
 @RestController()
