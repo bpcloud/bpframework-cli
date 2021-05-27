@@ -4,7 +4,7 @@
 * Copyright (c) 2020 Copyright bp All Rights Reserved.
 */
 
-import { Type } from "febs-decorator";
+import { Type } from "@bpframework/validation";
 
 export class DemoBean {
   a: number = 1;
