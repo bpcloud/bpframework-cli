@@ -27,7 +27,6 @@ class App {
     // run.
     Application.runKoa({
       logLevel: LogLevel.DEBUG,
-      enableScheduled: !!(global as any).enableScheduled,
       app: new koa(),
     });
   }
