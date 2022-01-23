@@ -15,13 +15,13 @@ var path = require('path');
 exports.generator = function (workDir, projectName, regName) {
   console.log(chalk.green('Begin generator koa project'));
   
-  let files = febs.file.dirExplorerFilesRecursive(path.join(__dirname, 'koa'));
+  let files = febs.file.dirExplorerFilesRecursive(path.join(__dirname, 'koacloud-db'));
   console.log(files);
-
+  
   febs.file.dirAssure(path.join(workDir, projectName));
 
   let destDir = path.join(workDir, projectName);
-  let srcDir = path.join(__dirname, 'koa');
+  let srcDir = path.join(__dirname, 'koacloud-db');
 
   for (const i in files) {
     let file = files[i];
@@ -41,5 +41,5 @@ exports.generator = function (workDir, projectName, regName) {
   } // for.
 
   console.log('Success generator project in: ' + chalk.green(path.join(workDir, projectName)));
-  console.log(chalk.green('Finish generator koa project, see ') + chalk.bgMagenta('\'readme.md\''));
+  console.log(chalk.green('Finish generator koa project, see ')+chalk.bgMagenta('\'readme.md\''));
 }

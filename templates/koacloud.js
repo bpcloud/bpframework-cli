@@ -35,7 +35,7 @@ exports.generator = function (workDir, projectName, regName) {
     // replace.
     data = febs.string.replace(data, '${projectName}', regName);
 
-    file = path.join(destDir, file.substr(0, file.length - 2));
+    file = path.join(destDir, file);
     febs.file.dirAssure(path.dirname(file));
     fs.writeFileSync(file, data, {encoding:'utf8', flag:'w+'});
   } // for.

@@ -1,0 +1,31 @@
+server:
+  port: 8080
+
+# database config.
+spring.db:
+  # db type: mysql, mssql
+  type: mysql
+  # (optional) timeout of connect to database.
+  connectTimeout: 5000
+  # (optional) timeout of query.
+  queryTimeout: 5000
+  # (optional) timeout of acquire connection from pool.
+  acquireTimeout: 5000
+  # (optional) max queue length of wait for acquire connection.
+  queueLimit: 200
+  # (optional) max count of connection in pool.
+  connectionLimit: 10
+  # (optional) idle timeout to recreate connect
+  idleTimeoutMillis: 600000
+  # database host.
+  host: 127.0.0.1
+  # (optional) databse port.
+  port: 3306
+  # database name.
+  database: dbname
+  # user name of databse.
+  user: username
+  # the password of user.
+  password: password
+  # (optional) table prefix name.
+  table_prefix: prefix_

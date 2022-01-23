@@ -60,6 +60,7 @@ function done(args, workDir) {
   let list = new List({ marker: '› ', markerLength: 2 });
   list.add('koa', 'koajs (like SpringBoot)');
   list.add('koacloud', 'koajs (like SpringCloud)');
+  list.add('koacloud with database', 'koajs (like SpringCloud)');
   list.add('exit', 'exit');
   list.start();
 
@@ -75,6 +76,11 @@ function done(args, workDir) {
       }
       else if (item == 'koacloud') {
         if (require('../templates/koacloud.js').generator(workDir, projectName, regName(projectName))) {
+          printSuccess();
+        }
+      }
+      else if (item == 'koacloud with database') {
+        if (require('../templates/koacloud-db.js').generator(workDir, projectName, regName(projectName))) {
           printSuccess();
         }
       }
