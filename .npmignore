@@ -27,9 +27,5 @@ npm-debug.log
 
 # Config
 #
-.eslintrc
-.eslintignore
-.editorconfig
-.gitignore
 
 dist/*.scss

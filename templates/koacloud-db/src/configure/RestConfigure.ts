@@ -33,7 +33,7 @@ class RestConfigure {
         request: RestRequest,
         response: RestResponse
       ): void => {
-        Application.getLogger().error(getErrorMessage(error));
+        getLogger().error(getErrorMessage(error));
       },
       /** 响应消息时发生错误. */
       errorResponseCallback: (
@@ -41,7 +41,7 @@ class RestConfigure {
         request: RestRequest,
         response: RestResponse
       ): void => {
-        Application.getLogger().error(getErrorMessage(error));
+        getLogger().error(getErrorMessage(error));
 
         //
         // febs.exception.
@@ -60,7 +60,7 @@ class RestConfigure {
         request: RestRequest,
         response: RestResponse
       ): void => {
-        Application.getLogger().error('404');
+        getLogger().error('404');
         response.body = '404';
       },
     }; //
