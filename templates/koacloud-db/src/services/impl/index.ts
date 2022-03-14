@@ -7,4 +7,4 @@
  * Desc:
  */
 
-import './demoService';
+import './DemoService';
