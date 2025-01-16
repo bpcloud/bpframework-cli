@@ -16,15 +16,15 @@
     "eslint": "^8.1.0",
     "pre-commit": "^1.2.2",
     "ts-loader": "^6.2.1",
-    "typescript": "^3.7.5"
+    "typescript": "^5.7.3"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=14"
   },
   "typesVersions": {
-    ">=3.0": {
+    ">=5.0": {
       "*": [
-        "ts3.0/*"
+        "ts5.0/*"
       ]
     }
   },
@@ -42,5 +42,5 @@
     "build:prd": "bpframework-build build:prd"
   },
   "pre-commit": "lint",
-  "version": "1.0.0"
+  "version": "1.0.1"
 }
